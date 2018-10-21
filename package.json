@@ -1,6 +1,6 @@
 {
-  "name": "import-all.macro.named",
-  "version": "3.0.0",
+  "name": "named-import-all.macro",
+  "version": "3.0.1",
   "description": "A macro for babel-plugin-macros that allows you to import all files that match a glob",
   "main": "dist/index.js",
   "engines": {
