@@ -1,8 +1,7 @@
 {
-  "name": "import-all.macro",
-  "version": "0.0.0-semantically-released",
-  "description":
-    "A macro for babel-plugin-macros that allows you to import all files that match a glob",
+  "name": "import-all.macro.named",
+  "version": "1.0.0",
+  "description": "A macro for babel-plugin-macros that allows you to import all files that match a glob",
   "main": "dist/index.js",
   "engines": {
     "node": "> 4",
@@ -17,8 +16,12 @@
     "validate": "kcd-scripts validate",
     "precommit": "kcd-scripts precommit"
   },
-  "files": ["dist"],
-  "keywords": ["babel-plugin-macros"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "babel-plugin-macros"
+  ],
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
   "dependencies": {
@@ -34,16 +37,23 @@
   "eslintConfig": {
     "extends": "./node_modules/kcd-scripts/eslint.js",
     "rules": {
-      "complexity": ["error", 12]
+      "complexity": [
+        "error",
+        12
+      ]
     }
   },
-  "eslintIgnore": ["node_modules", "coverage", "dist"],
+  "eslintIgnore": [
+    "node_modules",
+    "coverage",
+    "dist"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/kentcdodds/import-all.macro.git"
+    "url": "https://github.com/sanohin/import-all.macro.git"
   },
   "bugs": {
-    "url": "https://github.com/kentcdodds/import-all.macro/issues"
+    "url": "https://github.com/sanohin/import-all.macro/issues"
   },
-  "homepage": "https://github.com/kentcdodds/import-all.macro#readme"
+  "homepage": "https://github.com/sanohin/import-all.macro#readme"
 }
