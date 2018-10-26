@@ -1,5 +1,5 @@
 {
-  "projectName": "import-all.macro",
+  "projectName": "named-import-all.macro",
   "projectOwner": "kentcdodds",
   "files": [
     "README.md"

@@ -12,7 +12,7 @@ expect.addSnapshotSerializer({
       .split(projectRoot)
       .join('<PROJECT_ROOT>/')
       .replace(/fixtures/g, 'files')
-      .replace(/..\/macro/, 'import-all.macro')
+      .replace(/..\/macro/, 'named-import-all.macro')
   },
   test(val) {
     return typeof val === 'string'
@@ -47,26 +47,7 @@ pluginTester({
         const x = importAll(global.whatever)
       `,
     },
-    'README:1 `importAll` uses dynamic import': `
-      import importAll from '../macro'
-
-      document.getElementById('load-stuff').addEventListener('click', () => {
-        importAll('./fixtures/*.js').then(all => {
-          console.log(all)
-        })
-      })
-    `,
-    'README:2 `importAll.sync` uses static imports': `
-      import importAll from '../macro'
-
-      const a = importAll.sync('./fixtures/*.js')
-    `,
-    'README:3 `importAll.deferred` gives an object with dynamic imports': `
-      import importAll from '../macro'
-
-      const routes = importAll.deferred('./fixtures/*.js')
-    `,
-    'README:4 `importAll.deferredNamed` gives an object where key is the named export and value is the dynamic import': `
+    'README:1 `importAll.deferredNamed` gives an object where key is the named export and value is the dynamic import': `
     import importAll from '../macro'
 
     const routes = importAll.deferredNamed('./fixtures/*.js')

@@ -1,92 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`macros README:1 \`importAll\` uses dynamic import: README:1 \`importAll\` uses dynamic import 1`] = `
+exports[`macros README:1 \`importAll.deferredNamed\` gives an object where key is the named export and value is the dynamic import: README:1 \`importAll.deferredNamed\` gives an object where key is the named export and value is the dynamic import 1`] = `
 
-import importAll from 'import-all.macro'
-
-document.getElementById('load-stuff').addEventListener('click', () => {
-  importAll('./files/*.js').then(all => {
-    console.log(all)
-  })
-})
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-document.getElementById('load-stuff').addEventListener('click', () => {
-  Promise.all([
-    import('./files/a.js'),
-    import('./files/b.js'),
-    import('./files/c.js'),
-    import('./files/d.js'),
-  ])
-    .then(function importAllHandler(importVals) {
-      return {
-        './files/a.js': importVals[0],
-        './files/b.js': importVals[1],
-        './files/c.js': importVals[2],
-        './files/d.js': importVals[3],
-      }
-    })
-    .then(all => {
-      console.log(all)
-    })
-})
-
-
-`;
-
-exports[`macros README:2 \`importAll.sync\` uses static imports: README:2 \`importAll.sync\` uses static imports 1`] = `
-
-import importAll from 'import-all.macro'
-
-const a = importAll.sync('./files/*.js')
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import * as _filesAJs from './files/a.js'
-import * as _filesBJs from './files/b.js'
-import * as _filesCJs from './files/c.js'
-import * as _filesDJs from './files/d.js'
-
-const a = {
-  './files/a.js': _filesAJs,
-  './files/b.js': _filesBJs,
-  './files/c.js': _filesCJs,
-  './files/d.js': _filesDJs,
-}
-
-
-`;
-
-exports[`macros README:3 \`importAll.deferred\` gives an object with dynamic imports: README:3 \`importAll.deferred\` gives an object with dynamic imports 1`] = `
-
-import importAll from 'import-all.macro'
-
-const routes = importAll.deferred('./files/*.js')
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-const routes = {
-  './files/a.js': function() {
-    return import('./files/a.js')
-  },
-  './files/b.js': function() {
-    return import('./files/b.js')
-  },
-  './files/c.js': function() {
-    return import('./files/c.js')
-  },
-  './files/d.js': function() {
-    return import('./files/d.js')
-  },
-}
-
-
-`;
-
-exports[`macros README:4 \`importAll.deferredNamed\` gives an object where key is the named export and value is the dynamic import: README:4 \`importAll.deferredNamed\` gives an object where key is the named export and value is the dynamic import 1`] = `
-
-import importAll from 'import-all.macro'
+import importAll from 'named-import-all.macro'
 
 const routes = importAll.deferredNamed('./files/*.js')
 
@@ -120,18 +36,18 @@ const routes = {
 
 exports[`macros incorrect API usage: incorrect API usage 1`] = `
 
-import importAll from 'import-all.macro'
+import importAll from 'named-import-all.macro'
 const x = importAll.defered('hi')
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-Error: <PROJECT_ROOT>/src/__tests__/macro.js: ../macro: This is not supported: \`importAll.defered\`. Please see the import-all.macro documentation
+Error: <PROJECT_ROOT>/src/__tests__/macro.js: ../macro: This is not supported: \`importAll.defered\`. Please see the named-import-all.macro documentation
 
 `;
 
 exports[`macros no usage: no usage 1`] = `
 
-import importAll from 'import-all.macro'
+import importAll from 'named-import-all.macro'
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -141,11 +57,11 @@ import importAll from 'import-all.macro'
 
 exports[`macros non-static evaluate-able expression: non-static evaluate-able expression 1`] = `
 
-import importAll from 'import-all.macro'
+import importAll from 'named-import-all.macro'
 const x = importAll(global.whatever)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-Error: <PROJECT_ROOT>/src/__tests__/macro.js: ../macro: There was a problem evaluating the value of the argument for the code: importAll(global.whatever). If the value is dynamic, please make sure that its value is statically deterministic.
+Error: <PROJECT_ROOT>/src/__tests__/macro.js: ../macro: There was a problem evaluating the value of the argument for the code: x = importAll(global.whatever). If the value is dynamic, please make sure that its value is statically deterministic.
 
 `;
